@@ -1,4 +1,4 @@
-class Guerrero{
+class Guerrero{ // hola
 	var valorBaseHechiceria = 3
 	var hechizoPreferido = hechizoBasico
 	var valorBaseLucha = 1
