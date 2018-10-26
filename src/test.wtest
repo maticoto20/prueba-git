@@ -1,0 +1,99 @@
+import example.*
+describe "Tests Hechiceria"{
+	
+	test "Conocer el nivel de hechicería de Rolando" {
+		assert.equals(56, rolando.nivelHechiceria())
+	}
+	test "Cambiar el nombre del espectro maléfico a 'espectro superrecontramalefico muajajaja'. Conocer el nivel de hechicería de Rolando" {
+		espectroMalefico.cambiarNombre("espectro superrecontramalefico muajajaja")
+		assert.equals(125, rolando.nivelHechiceria())
+	}
+	test "Cambiar el hechizo preferido de Rolando para que sea el hechizo básico. Conocer el nivel de hechicería de Rolando." { //en el punto 3 se cambia la forma de calcular el poder de hechiceria. se reemplaza el  hechizo preferido por libro de hechizos, nunca a dar ok esta prueba.
+		rolando.cambiarHechizoPreferido(hechizoBasico)
+		assert.equals(35, rolando.nivelHechiceria())
+	}
+	test "Hacer que ocurra un eclipse. Conocer el nivel de hechicería de Rolando." {
+		fuerzaOscura.eclipse()
+		assert.equals(61, rolando.nivelHechiceria())
+	}
+	test "Saber si el espectro maléfico es poderoso." {
+		assert.equals(true, espectroMalefico.esPoderoso())
+	}
+	test "Cambiar el nombre del espectro maléfico a 'pepe'.	Saber si el espectro maléfico es poderoso." {
+		espectroMalefico.cambiarNombre("pepe")
+		assert.equals(false, espectroMalefico.esPoderoso())
+	}
+	test "Saber si el hechizo básico es poderoso." {
+		assert.equals(false, hechizoBasico.esPoderoso())
+	}
+	
+	//falta hacer el describe y el fixture para este bloque de tests, me tiraba error
+	test "Eliminar todos los artefactos de Rolando. Conocer la habilidad de lucha de Rolando"{
+//		rolando.removerArtefacto(collarDivino) 
+//		rolando.removerArtefacto(mascaraOscura)
+//		rolando.removerArtefacto(armadura)
+//		rolando.removerArtefacto(espejo)
+		rolando.eliminarArtefactos()
+		assert.equals(1, rolando.habilidadDeLucha())
+	}
+	test "Conocer la habilidad para la lucha de Rolando con todos los artefactos."
+	{
+		assert.equals(13, rolando.habilidadDeLucha())
+	}
+	test "cambiar la cantidad de perlas del collar divino a 3, Conocer la habilidad de lucha de rolando con todos los artefactos" {
+		collarDivino.cantidadPerlas(3)
+		assert.equals(11, rolando.habilidadDeLucha())
+	}
+	test "cambiar el valor base para la lucha de Rolando a 8. Conocer la habilidad de lucha de rolando con todos los artefactos" {
+		rolando.cambiarValorBaseLucha(8)
+		assert.equals(20, rolando.habilidadDeLucha())	
+	}
+	test "hacer que ocurra un eclipse, preguntar por el valor de lucha de la mascara oscura"{
+		fuerzaOscura.eclipse()
+		mascaraOscura.unidadesDeLucha(rolando)
+		assert.equals(5, mascaraOscura.unidadesDeLucha(rolando))
+	}
+	test "eliminar la mascara oscura de los artefactos de Rolando. Conocer la habilidad de lucha de rolando con todos los artefactos" {
+		rolando.removerArtefacto(mascaraOscura)
+		assert.equals(9, rolando.habilidadDeLucha())
+	}
+	
+	//falta hacer el describe y el fixture para este bloque de tests, me tiraba error
+	test "Saber si Rolando está cargado"{
+		assert.equals(true, rolando.artefactos().size() >= 5)
+	}	
+	test"Hacer que Rolando se saque la armadura. Saber si Rolando está cargado."{
+		rolando.removerArtefacto(armadura)
+		assert.equals(false, rolando.artefactos().size() >= 5)
+	}
+	test "Saber cuánta habilidad para la lucha tiene Rolando."{
+		assert.equals(20, rolando.habilidadDeLucha())
+	}
+	test "Saber cuál es la habilidad para la lucha de la armadura de Rolando si tiene una bendición de refuerzo"{
+		rolando.cambiarRefuerzo(bendicion)
+		assert.equals(58, rolando.habilidadDeLucha())		
+	}
+	test "Saber cuál es la habilidad para la lucha de la armadura de Rolando si tiene una cota de malla de refuerzo"{
+		rolando.cambiarRefuerzo(cotaDeMalla)
+		assert.equals(3, rolando.habilidadDeLucha())		
+	}
+	test "Saber cuál es la habilidad para la lucha de la armadura de Rolando si tiene el hechizo basico de refuerzo"{
+		rolando.cambiarRefuerzo(hechizoBasico)
+		assert.equals(12, rolando.habilidadDeLucha())		
+	}
+	test "Saber cuál es la habilidad para la lucha de la armadura de Rolando si tiene el espectro malefico de refuerzo"{
+		rolando.cambiarRefuerzo(espectroMalefico)
+		assert.equals(19, rolando.habilidadDeLucha())		
+	}
+	test "Eliminar todos los artefactos de Rolando. Incorporar solamente el espejo .Saber cuál es la habilidad para la lucha de Rolando."{
+		rolando.eliminarArtefactos()
+		rolando.agregarArtefacto(espejo)
+		assert.equals(1, rolando.habilidadDeLucha())		
+	}
+	test "Reemplazar al hechizo preferido por un libro de hechizos que contenga el espectro maléfico (con nombre “espectro maléfico”) y al hechizo básico. Saber cuál es el nivel de hechicería de Rolando."{
+		rolando.cambiarHechizoPreferido(libroDeHechizos)
+		assert.equals(56, rolando.habilidadDeLucha())			
+	}
+	
+}
+
